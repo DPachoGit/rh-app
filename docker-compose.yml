@@ -1,0 +1,44 @@
+services:
+  backend:
+    container_name: backend
+    build: ./RH-BackEnd
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/recursos_humanos?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: patata
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  frontend:
+    container_name: frontend
+    build: ./RH-FrontEnd
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: patata
+      MYSQL_DATABASE: recursos_humanos
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./RH-Backend/01-rh-mysql.sql:/docker-entrypoint-initdb.d/01-rh-mysql.sql
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:

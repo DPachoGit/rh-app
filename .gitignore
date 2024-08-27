@@ -1,0 +1,45 @@
+# Node.js (React)
+node_modules
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+build
+
+# Java
+*.class
+*.log
+*.jar
+*.war
+*.ear
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+.gradle
+build/
+
+# IDEs
+.classpath
+.project
+.settings
+.idea/
+*.iml
+*.iws
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# MySQL
+*.sql
+*.db
+*.db-journal
+
+# OS-specific
+.DS_Store
+Thumbs.db
